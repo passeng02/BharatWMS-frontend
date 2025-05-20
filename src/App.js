@@ -14,6 +14,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import CustomerDashboard from './pages/CustomerDashboard';
 import AddProduct from './pages/AddProduct';
 import PlaceOrder from './pages/PlaceOrder';
+import ViewOrders from './pages/ViewOrders';
 
 const theme = createTheme({
   palette: {
@@ -74,6 +75,7 @@ const App = () => (
           <Route path="/admin/add-product" element={<PrivateRoute role="admin"><AddProduct /></PrivateRoute>} />
           <Route path="/customer" element={<PrivateRoute role="customer"><CustomerDashboard /></PrivateRoute>} />
           <Route path="/customer/place-order" element={<PrivateRoute role="customer"><PlaceOrder /></PrivateRoute>} />
+          <Route path="/customer/orders" element={<PrivateRoute role="customer"><ViewOrders /></PrivateRoute>} />
         </Routes>
       </Router>
     </AuthProvider>

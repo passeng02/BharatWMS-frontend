@@ -76,7 +76,7 @@ const PlaceOrder = () => {
         { "orderItems": orderItems},
         {
           headers: {
-            "Authorization": `${token}`
+            "Authorization": localStorage.getItem('token')
           }
         }
       );

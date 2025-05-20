@@ -94,28 +94,74 @@ const HomePage = () => {
         <Typography variant="h3" component="h2" align="center" gutterBottom>
           Key Features
         </Typography>
-        <Grid container spacing={4} sx={{ mt: 4 }}>
+        <Grid 
+          container 
+          spacing={4} 
+          sx={{ 
+            mt: 4,
+            display: 'flex',
+            flexWrap: 'wrap'
+          }}
+        >
           {features.map((feature, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
+            <Grid 
+              item 
+              xs={12} 
+              sm={6} 
+              key={index}
+              sx={{
+                display: 'flex',
+                height: '200px'
+              }}
+            >
               <Card
                 sx={{
-                  height: '100%',
+                  width: '100%',
                   display: 'flex',
-                  flexDirection: 'column',
+                  flexDirection: 'row',
+                  alignItems: 'center',
                   transition: 'transform 0.2s',
                   '&:hover': {
-                    transform: 'scale(1.05)',
+                    transform: 'scale(1.02)',
                   },
+                  p: 2
                 }}
               >
-                <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
-                  <Box sx={{ color: 'primary.main', mb: 2 }}>
-                    {feature.icon}
-                  </Box>
-                  <Typography gutterBottom variant="h5" component="h3">
+                <Box sx={{ 
+                  color: 'primary.main', 
+                  mr: 4, 
+                  ml: 2,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  minWidth: '60px'
+                }}>
+                  {feature.icon}
+                </Box>
+                <CardContent sx={{ 
+                  flexGrow: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center'
+                }}>
+                  <Typography 
+                    gutterBottom 
+                    variant="h5" 
+                    component="h3"
+                    sx={{ mb: 2 }}
+                  >
                     {feature.title}
                   </Typography>
-                  <Typography color="text.secondary">
+                  <Typography 
+                    color="text.secondary"
+                    sx={{
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis'
+                    }}
+                  >
                     {feature.description}
                   </Typography>
                 </CardContent>
@@ -132,7 +178,7 @@ const HomePage = () => {
             Ready to Optimize Your Warehouse?
           </Typography>
           <Typography variant="h6" align="center" paragraph>
-            Join thousands of businesses that trust BharatWMS for their warehouse management needs
+            Hit the button below to start using the software ⬇️
           </Typography>
           <Box sx={{ textAlign: 'center', mt: 4 }}>
             <Button

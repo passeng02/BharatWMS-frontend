@@ -33,20 +33,30 @@ const Navbar = () => {
     <AppBar position="sticky">
       <Container maxWidth="lg">
         <Toolbar disableGutters>
-          <WarehouseIcon sx={{ mr: 2 }} />
-          <Typography
-            variant="h6"
+          <Box
             component={RouterLink}
             to="/"
             sx={{
-              flexGrow: 1,
+              display: 'flex',
+              alignItems: 'center',
               textDecoration: 'none',
               color: 'inherit',
-              fontWeight: 700
+              cursor: 'pointer',
+              '&:hover': {
+                opacity: 0.8
+              }
             }}
           >
-            BharatWMS
-          </Typography>
+            <WarehouseIcon sx={{ mr: 1 }} />
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: 700
+              }}
+            >
+              BharatWMS
+            </Typography>
+          </Box>
 
           {user ? (
             <>
