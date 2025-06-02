@@ -11,7 +11,9 @@ import {
   Link,
   Alert,
   CircularProgress,
-  Grid
+  Grid,
+  FormControlLabel,
+  Checkbox
 } from '@mui/material';
 import {
   PersonAdd as RegisterIcon,
@@ -25,11 +27,12 @@ import {
 const Register = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({
-    Customer_Name: '',
-    Customer_email: '',
-    Customer_Password: '',
-    Customer_phone: '',
-    Customer_address: ''
+    User_Name: '',
+    User_Email: '',
+    User_Password: '',
+    User_Phone: '',
+    User_Address: '',
+    isPicker: ''
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -56,15 +59,15 @@ const Register = () => {
 
   const getFieldIcon = (fieldName) => {
     switch (fieldName) {
-      case 'Customer_Name':
+      case 'User_Name':
         return <PersonIcon />;
-      case 'Customer_email':
+      case 'User_Email':
         return <EmailIcon />;
-      case 'Customer_Password':
+      case 'User_Password':
         return <LockIcon />;
-      case 'Customer_phone':
+      case 'User_Phone':
         return <PhoneIcon />;
-      case 'Customer_address':
+      case 'User_Address':
         return <HomeIcon />;
       default:
         return null;
@@ -73,7 +76,7 @@ const Register = () => {
 
   const getFieldLabel = (fieldName) => {
     return fieldName
-      .replace('Customer_', '')
+      .replace('User_', '')
       .replace(/_/g, ' ')
       .replace(/\b\w/g, l => l.toUpperCase());
   };
@@ -110,20 +113,33 @@ const Register = () => {
           <Grid container spacing={2} sx={{ width: '100%', m: 0 }}>
             {Object.keys(form).map((field) => (
               <Grid item xs={12} key={field} sx={{ width: '100%', p: 0 }}>
-                <TextField
-                  required
-                  fullWidth
-                  id={field}
-                  name={field}
-                  label={getFieldLabel(field)}
-                  type={field.includes('Password') ? 'password' : 'text'}
-                  value={form[field]}
-                  onChange={handleChange}
-                  InputProps={{
-                    startAdornment: getFieldIcon(field)
-                  }}
-                  sx={{ width: '100%' }}
-                />
+                {field === 'isPicker' ? (
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={form[field]}
+                        onChange={handleChange}
+                        name={field}
+                      />
+                    }
+                    label={getFieldLabel(field)}
+                  />
+                ) : (
+                  <TextField
+                    required
+                    fullWidth
+                    id={field}
+                    name={field}
+                    label={getFieldLabel(field)}
+                    type={field.includes('Password') ? 'password' : 'text'}
+                    value={form[field]}
+                    onChange={handleChange}
+                    InputProps={{
+                      startAdornment: getFieldIcon(field)
+                    }}
+                    sx={{ width: '100%' }}
+                  />
+                )}
               </Grid>
             ))}
           </Grid>

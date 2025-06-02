@@ -38,13 +38,16 @@ const AdminDashboard = () => {
           <Button variant="contained" color="success" onClick={() => navigate('/admin/add-product')} sx={{ mr: 2 }}>
             Add Product
           </Button>
+          <Button variant="contained" color="success" onClick={() => navigate('/admin/check-in')} sx={{ mr: 2 }}>
+            Check-in
+          </Button>
         </Box>
       </Box>
 
       <Grid container spacing={3}>
         {products.map(p => (
           p.SKUs.map(s => (
-          <Grid item xs={12} sm={6} md={4} key={p.product_id || p.Product_ID}>
+          <Grid item xs={12} sm={6} md={4} key={s.SKU_ID}>
             <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
               <CardContent sx={{ flexGrow: 1 }}>
                 <Typography variant="h6" gutterBottom>
@@ -57,17 +60,12 @@ const AdminDashboard = () => {
                   Product ID: {p.product_id || p.Product_ID}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
+                  SKU ID: {s.SKU_ID}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
                   Quantity: {s.Quantity} units
                 </Typography>
               </CardContent>
-              <CardActions>
-                <Button size="small" color="primary">
-                  Edit
-                </Button>
-                <Button size="small" color="error">
-                  Delete
-                </Button>
-              </CardActions>
             </Card>
           </Grid>
         ))))}

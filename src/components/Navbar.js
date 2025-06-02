@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Navigate, Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 import {
   AppBar,
@@ -20,6 +20,7 @@ import {
 const Navbar = () => {
   const { user, logout } = useAuth();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const navigate = useNavigate();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -77,6 +78,13 @@ const Navbar = () => {
                     >
                       Add Product
                     </Button>
+                    <Button
+                      color="inherit"
+                      component={RouterLink}
+                      to="/admin/check-in"
+                    >
+                      Check In
+                    </Button>
                   </>
                 )}
                 {user.role === 'customer' && (
@@ -127,6 +135,12 @@ const Navbar = () => {
                     logout();
                   }}>
                     Logout
+                  </MenuItem>
+                  <MenuItem onClick={() => {
+                    handleClose();
+                    navigate('/admin/Settings');
+                  }}>
+                    Settings
                   </MenuItem>
                 </Menu>
               </Box>
